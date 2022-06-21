@@ -81,3 +81,5 @@ pragmatic/.env
 db.sqlite3
 
 .idea/
+
+__pycache__/
