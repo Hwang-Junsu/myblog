@@ -28,8 +28,12 @@
        Unsubscribe
      </a>
     {% endif %}
-    {% endif %}
 
+    <a href="{% url 'projectapp:delete' pk=target_project.pk %}"
+      class = "btn btn-danger rounded-pill px-4">
+      Delete
+    </a>
+    {% endif %}
   </div>
 
     <div>

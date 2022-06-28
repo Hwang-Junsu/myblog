@@ -2,12 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, DeleteView
 from django.views.generic.list import MultipleObjectMixin
 
 from articleapp.models import Article
+from projectapp.decorators import project_ownership_required
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
 from subscribeapp.models import Subscription
@@ -50,3 +51,10 @@ class ProjectListView(ListView) :
     context_object_name = 'project_list'
     template_name = 'projectapp/list.html'
     paginate_by = 25
+
+
+class ProjectDeleteView(DeleteView):
+    model = Project
+    context_object_name = 'target_project'
+    success_url = reverse_lazy('projectapp:list')
+    template_name = 'projectapp/delete.html'
